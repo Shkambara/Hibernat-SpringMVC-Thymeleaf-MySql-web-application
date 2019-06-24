@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit day</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <form class="content-centre" action="#" th:action="@{/editShift/{id}(id=${shift.id})}" th:object="${shift}" method="post">
+            <div class="dodOgl-block">
+                <h1>Editing data - Working Shift Form</h1>
+                <h2>01.MAY.19</h2>
+            </div>
+            <div class="put-it">
+                <div class="tytul-block">
+                    <p>Profit from cash</p>
+                    <input type="text" th:field="*{profitFromCash}" class="data-content" id="tytul" value="222">
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Profit from drinks</p>
+                    <Label th:text="${drinkProf}">121 zł</Label>
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Profit from ice cream</p>
+                    <Label th:text="${iceProf}">1211 zł</Label>
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Total of the day</p>
+                    <Label th:text=${shift.getProfit()}>3600 zł</Label>
+                </div>
+            </div>
+
+            <p></p>
+            <div class="submit-block-form">
+               <input type="submit" class="button" onclick="myFunction()" value="Edit data">
+            </div>
+
+        </form>
+    </main>
+
+    <script>
+         function myFunction() {
+            
+                alert("Data saved")
+        }
+    </script>
+</body>
+
+
+
+</html>

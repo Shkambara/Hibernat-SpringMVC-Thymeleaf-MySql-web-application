@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Day IceCream Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-centre">
+            <div class="dodOgl-block">
+                <h1>Ice Cream Form</h1>
+                <h2 th:text="${day.getDate()}"></h2>
+            </div>
+            <div class="put-it">
+                <div class="tytul-block">
+                    <p>Scoops Sold</p>
+                    <label  th:text="${day.getScoopsSold()}"></label>
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Cuvvets</p>
+                    <Label th:text="${day.getCuvvets()}"></Label>
+                </div>
+            </div>
+            <div class="tytul-block-form">
+                <div class="opis-block">
+                    <p>List Of Taste Made</p>
+                </div>
+                <div class="ice-cream" th:each="iceCream : ${iceCreams}">
+                    <div class="ice-cream-create">
+                        <label th:text="${iceCream.getName()}"></label>
+                        <label th:text="${iceCream.getTypeInfo()}"></label>
+                        <label th:text="${iceCream.getHasSugarInfo()}"></label>
+                    </div>
+                    <div class="line">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <p></p>
+            <div class="opis-block">
+                <label>Estimated Profit</label>
+                <label th:text="${day.getProfit()}"></label>
+            </div>
+            <div class="submit-block-form">
+                <a class="button" th:href="@{'/api/iceCreamForm/' +${day.getIceForm().getId()}}">Back</a>
+            </div>
+
+        </div>
+    </main>
+</body>
+
+
+
+</html>

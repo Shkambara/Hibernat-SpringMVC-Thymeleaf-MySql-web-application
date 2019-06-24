@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                    <li class="nav-item-data"><a th:href="@{/prototype}">Forms</a></li>
+                    <li class="nav-item-data"><a onclick="loadMyOg()">Order</a></li>
+                    <li class="nav-item-data"><a onclick="loadHistory()">Hour Book</a></li>
+                    <li class="nav-item-data"><a>Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="registre">
+        <div class="image-content-centre">
+            <div class=image-form>
+             <a th:href="@{/showDay/{id}(id=${drinkForm.getId()})}">
+                <img th:src="@{/images/2578-200.png}" alt=""  style="width:250px;height: 250">
+           		</a>
+                <label for="">Drink Form</label>
+            </div>
+            <div class=image-form>
+             <a th:href="@{/iceCreamForm/{id}(id=${iceForm.getId()})}">
+                <img th:src="@{/images/109041.png}" alt=""  onclick="loadIce()"  style="width:250px;height: 250">
+                </a>
+                <label for="">Ice Cream Form</label>
+                
+            </div>
+            <div class=image-form>
+             <a th:href="@{/profitForm/{id}(id=${profitForm.getId()})}">
+                <img th:src="@{/images/untitled.png}"  onclick="loadProfit()" alt=""  style="width:250px;height: 250">
+                 </a>
+                <label for="">Profit Form</label>
+               
+            </div>
+        </div>
+    </main>
+    <script>
+        function loadDrink() {
+           alert("Data Deleted")
+        }
+    </script>
+</body>
+	
+	
+	
+</html>
