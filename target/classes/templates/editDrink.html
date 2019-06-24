@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit day</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <form class="content-centre" action="#" th:action="@{/editDrinkData/{id}(id=${drinkDayData.id})}" th:object="${drinkDayData}" method="post">
+            <div class="dodOgl-block">
+                <h1>Editing Drink Day Data - Drink Form</h1>
+                <h2 th:text="${drinkDayData.getDate()}"></h2>
+            </div>
+            <div class="put-it">
+                <div class="opis-block">
+                    <p>Juice Sold</p>
+                    <input type="text" th:field="*{juiceSold}"  class="data-content" id="miasto" value="222">
+                </div>
+                <div class="numertelefonu-block">
+                    <p>Cocktail Sold</p>
+                    <input type="tel" th:field="*{coctailsSold}" class="data-content" id="telephone" value="222">
+                </div>
+            </div>
+            <p></p>
+            <div class="tytul-block-form">
+                <div class="opis-block">
+                    <label>Estimated profit</label>
+                    <label for="">124 zł</label>
+                </div>
+            </div>
+            <div class="submit-block-form">
+                <input type="submit" class="button" onclick="myFunction()" value="Edit data">
+            </div>
+
+        </form>
+    </main>
+
+    <script>
+        function myFunction() {
+          
+                alert("Data saved")
+            
+        }
+    </script>
+
+</body>
+
+</html>

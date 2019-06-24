@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Day</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <form class="content-centre" action="#" th:action="@{/editDay/{id}(id=${iceData.id})}" th:object="${iceData}" method="post" >
+            <div class="dodOgl-block">
+                <h1>Editing data - Ice Cream Form</h1>
+                <h2 th:field="${iceData.getDate()}"></h2>
+            </div>
+            <div class="put-it">
+                <div class="tytul-block">
+                    <p>Scoops Sold</p>
+                    <input type="text" th:field="*{scoopsSold}" class="data-content" id="tytul" onchange="Count()" value="13131">
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Cuvvets</p>
+                    <Label id="cuvvet"></Label>
+                </div>
+            </div>
+            <p></p>
+            <div class="opis-block">
+                <label>Estimated Profit</label>
+                <label id="profit" th:text="${iceData.getProfit()}"></label>
+            </div>
+            <div class="submit-block-form" onclick="myFunction()">
+                <input type="submit" class="button" value="Edit data">
+            </div>
+
+        </form>
+    </main>
+
+     <script>
+        function myFunction() {
+            
+                alert("Data saved")
+        }
+        
+        function Count() {
+        console.log("here");
+        if (document.getElementById('tytul').value != null) {
+            
+            var scoops = document.getElementById('tytul').value;
+            var profit = scoops * 3.50;
+            var cuvvets = scoops/60;
+            document.getElementById('profit').innerHTML = profit + "zł";
+            document.getElementById('cuvvet').innerHTML = cuvvets;
+        }
+        
+
+    }
+    
+        
+    </script>
+</body>
+
+
+
+</html>

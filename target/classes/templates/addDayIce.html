@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adding IceCreamDayData</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+     <form class="content-centre" action="#" th:action="@{/addIceData}" th:object="${iceData}" method="post" >
+        <div class="content-centre">
+            <div class="dodOgl-block">
+                <h1>Adding data - Ice Cream Form</h1>
+                <h2 th:text="${date}"></h2>
+            </div>
+            <div class="put-it">
+                <div class="tytul-block">
+                    <p>Scoops Sold</p>
+                    <input type="text" class="data-content" id="tytul" th:field="*{scoopsSold}" onchange="minTimeOd()">
+                </div>
+                
+            </div>
+        </div>
+
+        <p></p>
+        <div class="opis-block">
+            <label>Estimated Profit</label>
+            <label id="profit">0 zł</label>
+        </div>
+        <div class="data-time-block">
+
+        </div>
+        <div class="submit-block-form">
+            <input type="submit" class="button" onclick="myFunction()" value="Add data">
+        </div>
+
+        </div>
+        </form>
+    </main>
+
+    <script>
+        function myFunction() {
+            
+                alert("Data saved")
+        }
+        
+        function minTimeOd() {
+        if (document.getElementById('tytul').value != null) {
+            
+            var time = document.getElementById('tytul').value;
+            var profit = time * 3.50;
+            document.getElementById('profit').innerHTML = profit + "zł";
+        }
+
+    }
+        
+    </script>
+</body>
+
+
+
+</html>

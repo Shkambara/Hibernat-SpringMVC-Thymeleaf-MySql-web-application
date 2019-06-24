@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adding Row</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>															
+        <form class="content-centre" action="#" th:action="@{/addProfit}" th:object="${workingShift}" method="post" >
+            <div class="dodOgl-block">
+                <h1>Adding data - End of the day Form</h1>
+                
+            </div>
+            <div class="put-it">
+                <div class="tytul-block">
+                    <p>Profit from cash</p>
+                    <input type="text" th:field="*{profitFromCash}" onchange="count()"  class="data-content" id="tytul" >
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Profit from drinks</p>
+                    <Label id="drink" th:value="${drinkDayProfit}">0</Label>
+                    <Label>zł</Label>
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Profit from ice cream</p>
+                    <Label id="ice" th:value="${iceDayProfit}">0</Label>
+                    <Label>zł</Label>
+                </div>
+                <div class="miastoOgl-block">
+                    <p>Total of the day</p>
+                    <Label id="profit" ></Label>
+        		
+                </div>
+            </div>
+
+            <p></p>
+            <div class="submit-block-form">
+                 <input type="submit" class="button" onclick="myFunction()" value="Add data">
+            </div>
+
+        </form>
+    </main>
+
+    <script>
+        function myFunction() {
+           
+                alert("Data saved")
+            
+        }
+        
+         function count() {
+           
+                if (document.getElementById('tytul').value != null) {
+            
+            var val = document.getElementById('tytul').value;
+            var drinkProf = document.getElementById('drink').value
+            var iceProf = document.getElementById('ice').value
+            document.getElementById('profit').innerHTML = val + drinkProf + iceProf + "zł";
+        }
+               
+            
+        }
+    </script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                    <li class="nav-item-data"><a th:href="@{/prototype}">Forms</a></li>
+                    <li class="nav-item-data"><a onclick="loadMyOg()">Order</a></li>
+                    <li class="nav-item-data"><a onclick="loadHistory()">Hour Book</a></li>
+                    <li class="nav-item-data"><a>Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="registre">
+        <div class="history-content-centre">
+            <h1>Drink Form</h1>
+            <div class="Title-Month">
+                <div class="Month-data">
+                    <h1 th:text="${form.getMonthAndYear()}"></h1>
+                    <h3 th:text="${form.getDrinkPerLitr()}"></h3>
+                </div>
+                <div class="profit-data">
+                	<h4>Total Profit: </h4>
+                    <h4 th:text="${form.getTotalMonthProfit()}"></h4>
+                    <h4>zł</h4>
+                </div>
+            </div>
+            <div class="ogloszenie-line" th:each="day : ${days}" >
+            <div class="ogloszenie">
+                <div class="ogloszenie-labels">
+                    <div class="tytulogl-block">
+                        <label th:text="${day.getDate()}"></label>
+                    </div>
+                    <div class="dataogl-block">
+                    	<label>Profit:</label>
+                        <label th:text="${day.getProfit()}"></label>
+                        <label> zł</label>
+                    </div>
+                    <div class="dataogl-block">
+                    	<label>Juice sold:</label>
+                        <label th:text="${day.getJuiceSold()}"></label>
+                    </div>
+                    <div class="dataogl-block">
+                    	<label>Coctails sold:</label>
+                        <label th:text="${day.getCoctailsSold()}"></label>
+                    </div>
+                </div>
+                <div class="ogloszenie-buttons">
+                    <div class="skargaogloszenie-block">
+                       <a class="button" th:href="@{/editDay/{id}(id=${day.id})}">Edit</a>
+                    </div>
+                    <form class="skargaogloszenie-block" th:action="@{'/delete_Day/' +${day.getId()}}" method="post" th:object="${day}">
+                        <input type="submit" class="button" value="Delete"></a>
+                    </form>
+
+                </div>
+            </div>
+            <div class="line">
+                <hr>
+            </div>
+            </div>
+             <a class="button" th:href="@{'/addDay/' +${form.getId()}}" >Add day</a>
+             <a class="button" th:href="@{'/sendDay/' +${form.getId()}}" onclick="mySent()">Send Form</a>
+        </div>
+    </main>
+    <script>
+        function myFunction() {
+           alert("Data Deleted")
+        }
+        function mySent() {
+           alert("Form succesfully sent please wait for email with form acception")
+        }
+    </script>
+</body>
+
+</html>

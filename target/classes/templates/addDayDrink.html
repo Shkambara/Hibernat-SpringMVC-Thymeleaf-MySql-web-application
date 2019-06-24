@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adding row</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <form class="content-centre" action="#" th:action="@{/api/addDay}" th:object="${drinkDayData}" method="post" >
+            <div class="dodOgl-block">
+                <h1>Adding Drink Day Data</h1>
+                <h1>Drink Form</h1>
+                <h2 th:text="${date}"><h2>
+               
+            </div>
+            <div class="put-it">
+                <div class="opis-block">
+                    <p>Juice Sold</p>
+                    <input type="text" th:field="*{juiceSold}" onchange="count()" value="0"  class="data-content" id="juiceSold">
+               		
+                </div>
+                <div class="numertelefonu-block">
+                    <p>Cocktails Sold</p>
+                    <input type="text" th:field="*{coctailsSold}" onchange="count()" value="0" class="data-content" id="coctailsSold">
+                </div>
+            </div>
+            <p></p>
+            <div class="tytul-block-form">
+                <div class="opis-block">
+                    <label>Estimated profit</label>
+                    <label id="profit">0 zł</label>
+                </div>
+            </div>
+            <div class="submit-block-form">
+                <input type="submit" class="button" onclick="myFunction()" value="Add data">
+            </div>
+
+        </form>
+    </main>
+	<script>
+	 function myFunction() {
+            
+                alert("Data saved")
+        }
+        
+         function count() {
+           
+                if ((document.getElementById('juiceSold').value != null)&& (document.getElementById('coctailsSold').value != null)) {
+            
+            var val = document.getElementById('juiceSold').value * 13.5;
+            var val1 = document.getElementById('coctailsSold').value * 14.5;
+       			
+            document.getElementById('profit').innerHTML = (val + val1) + "zł";
+            }
+        }
+        </script>
+</body>
+
+</html>

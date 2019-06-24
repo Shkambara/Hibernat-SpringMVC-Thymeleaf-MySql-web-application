@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                    <li class="nav-item-data"><a th:href="@{/prototype}">Forms</a></li>
+                    <li class="nav-item-data"><a onclick="loadMyOg()">Order</a></li>
+                    <li class="nav-item-data"><a onclick="loadHistory()">Hour Book</a></li>
+                    <li class="nav-item-data"><a>Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="registre">
+        <div class="history-content-centre">
+            <h1>Profit Form</h1>
+            <div class="Title-Month">
+                <div class="Month-data">
+                      <h1 th:text="${form.getMonthAndYear()}"></h1>
+                </div>
+                <div class="profit-data">
+                   <h4>Total Profit: </h4>
+                    <h4 th:text="${form.getTotalMonthProfit()}"></h4>
+                    <h4>zł</h4>
+                </div>
+            </div>
+            <div th:each="shift : ${shifts}">
+                <div class="ogloszenie">
+                    <div class="ogloszenie-labels-profit">
+                        <div class="tytulogl-block">
+                            <label th:text="${shift.getDate()}"></label>
+                        </div>
+                        <div class="dataogl-block">
+                        	<label>Sum of the shift: </label>
+                            <label th:text="${shift.getProfit()}"></label>
+                            <label>zł</label>
+                        </div>
+                        <div class="dataogl-block">
+                            <label>Profit from cash: </label>
+                            <label th:text="${shift.getProfitFromCash()}"></label>
+                            <label>zł</label>
+                        </div>
+                        <div class="dataogl-block">
+                            <label>Sum from scoops: </label>
+                            <label th:text="${shift.getProfitFromScoops()}"></label>
+                            <label>zł</label>
+                        </div>
+                        <div class="dataogl-block">
+                            <label>Sum from drink: </label>
+                            <label th:text="${shift.getProfitFromDrinks()}"></label>
+                            <label>zł</label>
+                        </div>
+                    </div>
+                    <div class="ogloszenie-buttons">
+                        <div class="skargaogloszenie-block">
+                            <a class="button" th:href="@{/editProfitshift/{id}(id=${shift.id})}">Edit</a>
+                        </div>
+                        <form class="skargaogloszenie-block" th:action="@{'/delete_profitshift/' +${shift.getId()}}" method="post" th:object="${shift}">
+                        	<input type="submit" class="button" value="Delete"></a>
+                    	</form>
+
+                    </div>
+                </div>
+                <div class="line">
+                    <hr>
+                </div>
+            </div>
+
+            <a class="button" th:href="@{'/addProfitshift/' +${form.getId()}}">Add shift</a>
+           <a class="button" th:href="@{'/sendProfitForm/' +${form.getId()}}" onclick="mySent()">Send form</a>
+        </div>
+    </main>
+    <script>
+        function myFunction() {
+           alert("Data Deleted")
+        }
+        function mySent() {
+           alert("Form succesfully sent please wait for email with form acception")
+        }
+    </script>
+</body>
+
+</html>

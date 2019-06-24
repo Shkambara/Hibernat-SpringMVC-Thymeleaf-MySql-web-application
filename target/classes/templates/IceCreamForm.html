@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IceCreamForm</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="nav-bar">
+                <a class="logo" onclick="loadLogo()"><img th:src="@{/images/logo_Grycan.jpg}" alt="Girl in a jacket"
+                        style="width:100px;height:30px;"> </a>
+                <ul class="nav-list">
+                    <li class="nav-item-data"><a th:href="@{/prototype}">Forms</a></li>
+                    <li class="nav-item-data"><a onclick="loadMyOg()">Order</a></li>
+                    <li class="nav-item-data"><a onclick="loadHistory()">Hour Book</a></li>
+                    <li class="nav-item-data"><a>Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="registre">
+        <div class="history-content-centre">
+            <h1>Ice Cream Form</h1>
+            <div class="Title-Month">
+                <div class="Month-data">
+                      <h1 th:text="${form.getMonthAndYear()}"></h1>
+                </div>
+                <div class="profit-data">
+                   <h6>Total Profit: </h6>
+                    <h6 th:text="${form.getTotalMonthProfit()}"></h6>
+                    <h6>zł</h6>
+                </div>
+                 <div class="profit-data">
+                   <h6>Scoops goal:</h6>
+                    <h6 th:text="${form.getScoopsGoal()}"></h6>
+                </div>
+                 <div class="profit-data">
+                   <h6>Total scoops sold: </h6>
+                    <h6 th:text="${form.getTotalScoopsSold()}"></h6>
+                </div>
+            </div>
+            <div th:each="day : ${days}">
+                <div class="ogloszenie">
+                    <div class="ogloszenie-labels-profit">
+                        <div class="tytulogl-block">
+                            <label th:text="${day.getDate()}"></label>
+                        </div>
+                        <div class="dataogl-block">
+                        	<label>Sum of the day: </label>
+                            <label th:text="${day.getProfit()}"></label>
+                            <label>zł</label>
+                        </div>
+                        <div class="dataogl-block">
+                            <label>Cuvvets made: </label>
+                            <label th:text="${day.getCuvvets()}"></label>
+                        </div>
+                    </div>
+                    <div class="ogloszenie-buttons">
+                    	<div class="skargaogloszenie-block">
+                            <a class="button" th:href="@{'/showDetails/' +${day.getId()}}">View</a>
+                        </div>
+                        <div class="skargaogloszenie-block" >
+                            <a class="button" th:href="@{'/editIceData/' +${day.getId()}}">Edit</a>
+                        </div>
+                        <form class="skargaogloszenie-block" th:action="@{'/delete_iceDay/' +${day.getId()}}" method="post" th:object="${day}">
+                        	<input type="submit" class="button" value="Delete"></a>
+                    	</form>
+
+                    </div>
+                </div>
+                <div class="line">
+                    <hr>
+                </div>
+            </div>
+             <a class="button" th:href="@{'/addIceDay/' +${form.getId()}}">Add day</a>
+            <a class="button" th:href="@{'/sendIceCreamForm/' +${form.getId()}}" onclick="mySent()">Send form</a>
+        </div>
+    </main>
+
+   <script>
+        function myFunction() {
+           alert("Data Deleted")
+        }
+        function mySent() {
+           alert("Form succesfully sent please wait for email with form acception")
+        }
+    </script>
+</body>
+
+</html>
